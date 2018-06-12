@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net47</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="CodeGen\TypeNames.txt" />
+    <None Remove="Serialization\TypeMap.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="CodeGen\TypeNames.txt" />
+    <EmbeddedResource Include="Serialization\TypeMap.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="7.0.1" />
+    <PackageReference Include="DotNet.Glob" Version="2.0.3" />
+    <PackageReference Condition=" '$(TargetFramework)' == 'net47' " Include="DotNetZip" Version="1.10.1" />
+    <PackageReference Condition=" '$(TargetFramework)' == 'netcoreapp2.0' " Include="Iconic.Zlib.Netstandard" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\*.csv" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
